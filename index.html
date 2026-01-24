@@ -1,114 +1,113 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ Lớp</title>
-
     <style>
-        /* Thiết lập chung */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
-            color: #333;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        /* 50% PHÍA TRÊN MÀN HÌNH */
+        .top-container {
+            height: 50vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-        }
-
-        /* Logo và Tiêu đề trường */
-        .header-top {
-            width: 100%;
-            max-width: 800px;
-            padding: 20px;
-            text-align: center;
             box-sizing: border-box;
+            /* Đường kẻ ngăn cách 50% trên và 50% dưới */
+            border-bottom: 2px solid black; 
         }
 
-        .header-top img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* Khung Tiêu Đề Nhóm (Phần bị lỗi tràn viền cũ) */
-        .main-title-box {
-            width: 90%;
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 3px solid #000;
-            background-color: #fff;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        h1, h2 {
-            margin: 10px 0;
-            /* Phép toán calc giúp font chữ tự nhỏ lại trên đt và to ra trên máy tính */
-            font-size: calc(1.3rem + 1.2vw); 
-            line-height: 1.3;
-            text-transform: uppercase;
-            word-wrap: break-word; /* Tự xuống dòng nếu từ quá dài */
-        }
-
-        /* Thanh điều hướng */
-        .nav-menu {
-            margin-top: 30px;
+        /* 90% diện tích của phần trên dành cho Logo */
+        .logo-area {
+            flex: 0 0 80%; 
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap; /* Tự xuống dòng nếu màn hình điện thoại hẹp */
             justify-content: center;
+            align-items: center;
+            padding: 5px 0;
+            /* Đường kẻ mỏng giữa Logo và các cột chữ bên dưới */
+            border-bottom: 2px solid black; 
+            box-sizing: border-box;
+        }
+        .logo-area img {
+            max-height: 90%;
+            max-width: 90%;
+            object-fit: contain;
         }
 
-        .nav-link {
-            font-size: 20px;
+        /* 60% diện tích của phần trên dành cho 4 cột thông tin */
+        .info-area {
+            flex: 0 0 20%;
+            display: flex;
+            width: 100%;
+        }
+
+        /* Các cột thông tin */
+        .col {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        /* Định dạng chữ đồng nhất */
+        .text-style, .link-style {
+            font-size: 18px;
             font-weight: bold;
-            color: #1877f2;
+            color: black;
             text-decoration: none;
-            padding: 10px 20px;
-            border: 2px solid #1877f2;
-            border-radius: 8px;
-            transition: 0.3s;
+            text-transform: uppercase;
+            line-height: 1.4;
         }
 
-        .nav-link:hover {
-            background-color: #1877f2;
-            color: white;
+        .link-style:hover {
+            color: #1877f2;
         }
 
-        /* Responsive cho màn hình cực nhỏ */
-        @media (max-width: 480px) {
-            .nav-link {
-                width: 80%;
-                text-align: center;
-            }
+        /* 50% PHÍA DƯỚI ĐỂ TRỐNG */
+        .bottom-container {
+            height: 50vh;
         }
 
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .text-style, .link-style { font-size: 13px; }
+            .col { padding: 0 2px; }
+        }
     </style>
 </head>
-
 <body>
 
-    <div class="header-top">
-        <img src="img/logo_truong.png" alt="Trường THPT Thủ Thiêm">
+    <div class="top-container">
+        <div class="logo-area">
+            <img src="img/LOGO2.png" alt="Logo Trường">
         </div>
 
-    <div class="main-title-box">
-        <h2>NHÓM:</h2>
-        <h1>ÁI BAN'S GOLDS</h1>
-        <h2>LỚP: 12.10</h2>
-        <h2>HOẠT ĐỘNG NHÓM</h2>
+        <div class="info-area">
+            <div class="col">
+                <span class="text-style">LỚP: 12.10</span>
+            </div>
+            <div class="col">
+                <span class="text-style">NHÓM: ÁI BAN'S GOLDS</span>
+            </div>
+            <div class="col">
+                <a href="hoatdong.html" class="link-style">HOẠT ĐỘNG NHÓM</a>
+            </div>
+            <div class="col">
+                <a href="tvlop.html" class="link-style">THÀNH VIÊN NHÓM</a>
+            </div>
+        </div>
     </div>
 
-    <div class="nav-menu">
-        <a href="tvlop.html" class="nav-link">Thành Viên Lớp</a>
-        <a href="hoatdong.html" class="nav-link">Hoạt Động Nhóm</a>
-    </div>
+    <div class="bottom-container"></div>
 
 </body>
 </html>
