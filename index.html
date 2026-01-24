@@ -1,159 +1,114 @@
 <!DOCTYPE html>
 <html lang="vi">
 
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Chủ Lớp</title>
 
     <style>
-
-        /* 1. Thiết lập chung toàn trang */
-        body, html {
+        /* Thiết lập chung */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden; /* Giữ trang web vừa khít màn hình */
+            background-color: #ffffff;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        /* 2. Chia 50% Phần trên */
-        .top-half {
-            display: flex;
-            flex-direction: column; /* Xếp dọc các phần tử */
-            padding-top: 40px; /* Tránh đè lên menu */
+        /* Logo và Tiêu đề trường */
+        .header-top {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
             box-sizing: border-box;
         }
 
-	/* Logo trường chiếm phần lớn diện tích trên */
-        .logo-section {
-            flex: 4; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .header-top img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Khung Tiêu Đề Nhóm (Phần bị lỗi tràn viền cũ) */
+        .main-title-box {
+            width: 90%;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 3px solid #000;
             background-color: #fff;
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        .logo-section img {
-            object-fit: contain;
+        h1, h2 {
+            margin: 10px 0;
+            /* Phép toán calc giúp font chữ tự nhỏ lại trên đt và to ra trên máy tính */
+            font-size: calc(1.3rem + 1.2vw); 
+            line-height: 1.3;
+            text-transform: uppercase;
+            word-wrap: break-word; /* Tự xuống dòng nếu từ quá dài */
         }
 
-        /* Khung bao quanh tiêu đề nhóm lớp */
-	.header-box {
-	    width: 95%;           /* Chiếm 95% chiều rộng màn hình bất kể máy tính hay đt */
-	    max-width: 900px;     /* Nhưng không được rộng quá 900px trên máy tính */
-	    margin: 20px auto;
-	    padding: 15px;
-	    border: 2px solid black;
-	    box-sizing: border-box; /* Giúp padding không làm nở khung ra ngoài */
-	    text-align: center;
-	}
+        /* Thanh điều hướng */
+        .nav-menu {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap; /* Tự xuống dòng nếu màn hình điện thoại hẹp */
+            justify-content: center;
+        }
 
-	/* Tiêu đề tự co giãn font chữ */
-	h1, h2 {
-	    /* calc giúp chữ tự to ra trên máy tính và nhỏ lại trên điện thoại */
-	    font-size: calc(1.2rem + 1.5vw); 
-	    line-height: 1.4;       /* Khoảng cách dòng thoáng đãng, không bị chồng chữ */
-	    word-wrap: break-word;  /* Nếu từ quá dài, nó sẽ tự xuống dòng */
-	    margin: 10px 0;
-	}
+        .nav-link {
+            font-size: 20px;
+            font-weight: bold;
+            color: #1877f2;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 2px solid #1877f2;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
 
-	/* Đảm bảo ảnh (nếu có) không tràn màn hình */
-	img {
-	    max-width: 100%;
-	    height: auto;
-	}
+        .nav-link:hover {
+            background-color: #1877f2;
+            color: white;
+        }
 
-	/* Phần chứa thông tin và đường dẫn */
-	.info-section {
-	    flex: 1;
-	    display: flex;
-	    justify-content: space-around; /* Đẩy 2 cụm sang 2 bên */
-	    align-items: center;
-	    background-color: #f2f2f2;
-	    border-top: 2px solid #333;
-	    border-bottom: 2px solid #333;
-	}
-	/* Sửa lại phần khung chứa tên nhóm lớp */
-	.header-box {
-	    margin: auto;
-	    text-align: center;
-	    border: 2px solid black;
-	    padding: 10px;
-	}
-
-	/* Định dạng cho từng cụm (Lớp + Link) */
-	.info-group {
-	    display: flex;
-	    align-items: center;
-	    gap: 30px; /* Khoảng cách giữa tên và đường dẫn */
-	}
-
-	.label-text {
-	    font-weight: 500;
-	    text-transform: uppercase;
-	}
-
-	.nav-link {
-	    font-size: 30px;
-	    font-weight: 500;
-	    color: black;
-	    text-decoration: none;
-	    text-transform: uppercase;
-	}
-
-	h2, h1 {
-	    font-size: calc(1.5rem + 1vw); /* Chữ tự co giãn theo màn hình */
-	    word-wrap: break-word;        /* Tự xuống dòng nếu từ quá dài */
-	    margin: 10px 0;
-	}
-
-	.nav-link:hover {
-	    color: #555; /* Chữ hơi nhạt đi một chút khi di chuột để biết đó là link */
-	}
-
-        /* 3. Chia 50% Phần dưới (Hình ảnh tự chèn) */
-        .bottom-half {
-	    width: 100%; /* Đảm bảo khung cha có kích thước */
-	    height: 59vh; /* Ví dụ: Chiếm 50% chiều cao màn hình */
-	    /* Hoặc một chiều cao cố định nào đó */
-	    display: flex; /* Dùng flexbox để căn giữa ảnh */
-	    justify-content: center;
-		    align-items: center;
-		    overflow: hidden; /* Quan trọng để ẩn phần thừa nếu có */
-		}
-
-	.bottom-half img {
-	    width: 100%; /* Ảnh sẽ chiếm toàn bộ chiều rộng của khung cha */
-	    height: 100%; /* Ảnh sẽ chiếm toàn bộ chiều cao của khung cha */
-	    object-fit: contain; /* <-- Dòng thần thánh đây! */
-	    /* Nếu bạn muốn ảnh nằm chính giữa mà không bị co kéo, và có khoảng trắng */	   
+        /* Responsive cho màn hình cực nhỏ */
+        @media (max-width: 480px) {
+            .nav-link {
+                width: 80%;
+                text-align: center;
+            }
         }
 
     </style>
 </head>
 
-
 <body>
 
-    <div class="top-half">
-        <div class="logo-section">
-            <img src="img/LOGO2.png" alt="">
+    <div class="header-top">
+        <img src="img/logo_truong.png" alt="Trường THPT Thủ Thiêm">
         </div>
-	<div class="info-section">
-	    <span class="label-text">Lớp: 12.10</span>
-	    <span class="label-text">Nhóm: ÁI BAN's golds</span>
-	    <a href="hoatdong.html" class="nav-link">Hoạt động nhóm</a>
-	    <a href="tvlop.html" class="nav-link">Thành viên Nhóm</a>
-	</div>
+
+    <div class="main-title-box">
+        <h2>NHÓM:</h2>
+        <h1>ÁI BAN'S GOLDS</h1>
+        <h2>LỚP: 12.10</h2>
+        <h2>HOẠT ĐỘNG NHÓM</h2>
     </div>
 
-    <div class="bottom-half">
-	<img src="" alt="loading...">
+    <div class="nav-menu">
+        <a href="tvlop.html" class="nav-link">Thành Viên Lớp</a>
+        <a href="hoatdong.html" class="nav-link">Hoạt Động Nhóm</a>
     </div>
-
 
 </body>
 </html>
