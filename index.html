@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ Lớp</title>
+
+    <style>
+
+        /* 1. Thiết lập chung toàn trang */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Giữ trang web vừa khít màn hình */
+        }
+
+
+
+        nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+
+        /* 2. Chia 50% Phần trên */
+        .top-half {
+            height: 40%;
+            display: flex;
+            flex-direction: column; /* Xếp dọc các phần tử */
+            padding-top: 40px; /* Tránh đè lên menu */
+            box-sizing: border-box;
+        }
+
+	/* Logo trường chiếm phần lớn diện tích trên */
+        .logo-section {
+            flex: 4; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        .logo-section img {
+            height: 100%; /* Logo to lấp đầy diện tích được giao */
+            width: auto;
+            object-fit: contain;
+        }
+
+	/* Tên lớp và Tên nhóm ở dưới logo */
+	nav { display: none; } 
+
+	/* Phần chứa thông tin và đường dẫn */
+	.info-section {
+	    flex: 1;
+	    display: flex;
+	    justify-content: space-around; /* Đẩy 2 cụm sang 2 bên */
+	    align-items: center;
+	    background-color: #f2f2f2;
+	    border-top: 2px solid #333;
+	    border-bottom: 2px solid #333;
+	}
+
+	/* Định dạng cho từng cụm (Lớp + Link) */
+	.info-group {
+	    display: flex;
+	    align-items: center;
+	    gap: 30px; /* Khoảng cách giữa tên và đường dẫn */
+	}
+
+	.label-text {
+	    font-size: 30px;
+	    font-weight: 500;
+	    text-transform: uppercase;
+	}
+
+	.nav-link {
+	    font-size: 30px;
+	    font-weight: 500;
+	    color: black;
+	    text-decoration: none;
+	    text-transform: uppercase;
+	}
+
+	.nav-link:hover {
+	    color: #555; /* Chữ hơi nhạt đi một chút khi di chuột để biết đó là link */
+	}
+
+        /* 3. Chia 50% Phần dưới (Hình ảnh tự chèn) */
+        .bottom-half {
+	    width: 100%; /* Đảm bảo khung cha có kích thước */
+	    height: 59vh; /* Ví dụ: Chiếm 50% chiều cao màn hình */
+	    /* Hoặc một chiều cao cố định nào đó */
+	    display: flex; /* Dùng flexbox để căn giữa ảnh */
+	    justify-content: center;
+	    align-items: center;
+	    overflow: hidden; /* Quan trọng để ẩn phần thừa nếu có */
+	}
+
+	.bottom-half img {
+	    width: 100%; /* Ảnh sẽ chiếm toàn bộ chiều rộng của khung cha */
+	    height: 100%; /* Ảnh sẽ chiếm toàn bộ chiều cao của khung cha */
+	    object-fit: contain; /* <-- Dòng thần thánh đây! */
+	    /* Nếu bạn muốn ảnh nằm chính giữa mà không bị co kéo, và có khoảng trắng */	   
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="hoatdong.html">HOẠT ĐỘNG NHÓM</a> | 
+        <a href="tvlop.html">THÀNH VIÊN LỚP</a>
+    </nav>
+
+    <div class="top-half">
+        <div class="logo-section">
+            <img src="img/LOGO2.png" alt="">
+        </div>
+	<div class="info-section">
+	    <span class="label-text">Lớp: 12.10</span>
+	    <span class="label-text">Nhóm: ÁI BAN's golds</span>
+	    <a href="hoatdong.html" class="nav-link">Hoạt động nhóm</a>
+	    <a href="tvlop.html" class="nav-link">Thành viên Nhóm</a>
+	</div>
+    </div>
+
+    <div class="bottom-half">
+	<img src="" alt="loading...">
+    </div>
+
+</body>
+</html>

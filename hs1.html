@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Hồ Sơ Thành Viên</title>
+    <style>
+	/* Khung chứa hồ sơ */
+	.profile-container {
+	    display: flex;
+	    width: 100%;
+	    height: 370px; /* chiều cao tùy ý */
+	    border: 1px solid #ccc;
+	    margin-top: 20px;
+	}
+
+	/* Phần bên trái: Ảnh (chiếm 1 phần) */
+	.profile-image {
+	    flex: 1; /* Tương đương 1/3 diện tích */
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    border-right: 1px solid #ccc;
+	}
+	.profile-image img {
+	    width: 100%;     /* Chiếm toàn bộ chiều rộng của khung 1/3 bên trái */
+	    height: 100%;    /* Chiếm toàn bộ chiều cao của khung 1/3 bên trái */
+	    object-fit: cover; /* Lệnh thần thánh: Phủ đầy khung, có thể cắt ảnh ở rìa */
+	    border-radius: 10px; /* Vẫn giữ bo góc */
+	    order-radius: 15px;
+	}
+
+	/* Phần bên phải: Thông tin (chiếm 2 phần) */
+	.profile-info {
+	    flex: 2; /* Tương đương 2/3 diện tích */
+	    padding: 20px;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	}
+
+	.info-item {
+	    font-size: 28px;
+	    margin-bottom: 10px;
+	}
+
+	.info-item strong {
+	    color: #333;
+	    width: 150px;
+	    display: inline-block;
+	}
+	/* Khung chứa 3 nút điều hướng */
+	.navigation-area {
+	    display: flex;
+	    justify-content: space-evenly; /* Chia đều khoảng cách 3 nút */
+	    align-items: center;
+	    margin-top: 50px;
+	    padding: 20px;
+	}
+
+	/* Định dạng chung cho cả 3 nút bấm */
+	.nav-btn {
+	    font-size: 22px;           /* Cỡ chữ to rõ */
+	    font-weight: bold;
+	    color: black;
+	    text-decoration: none;
+	    text-transform: uppercase;
+	    border: 1px solid gray;
+	    padding: 10px 20px;
+	    transition: 0.3s;
+	    min-width: 200px;          /* Đảm bảo các nút có chiều dài bằng nhau */
+	    text-align: center;
+	}
+
+	/* Hiệu ứng khi di chuột vào nút */
+	.nav-btn:hover {
+	    background-color: black;
+	    color: white;
+	}
+
+
+    </style>	
+</head>
+
+<body>
+    <h1>HỒ SƠ HỌC SINH</h1>
+
+	<div class="profile-container">
+	    <div class="profile-image">
+	        <img src="img/THU.png" alt="Ảnh đại diện">
+	    </div>
+	    <div class="profile-info">
+	        <div class="info-item"><strong>Họ tên:</strong> Anh Thư</div>
+	        <div class="info-item"><strong>Ngày sinh:</strong> 08/12/2008</div>
+	        <div class="info-item"><strong>Tuổi:</strong> 17</div>
+	        <div class="info-item"><strong>Tiểu sử:</strong></div>
+	        <div class="info-item"><strong>Sở thích:</strong> Free Fire,Móc</div>
+	        <div class="info-item"><strong>Chiều cao:</strong> 201 cm</div>
+	        <div class="info-item"><strong>Cân nặng:</strong> 50 kg</div>
+	        <div class="info-item"><strong>Nickname:</strong></div>
+
+	    </div>
+	</div>
+
+	<div class="navigation-area">
+	    <a href="hs5.html" class="nav-btn"> Trước</a>
+	    <a href="tvlop.html" class="nav-btn">Danh Sách </a>
+	    <a href="hs2.html" class="nav-btn">Sau</a>
+	</div>
+
+	</div>	
+</body>
+</html>
