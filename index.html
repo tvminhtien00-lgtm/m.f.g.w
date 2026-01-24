@@ -21,7 +21,6 @@
 
         /* 2. Chia 50% Phần trên */
         .top-half {
-            height: 40%;
             display: flex;
             flex-direction: column; /* Xếp dọc các phần tử */
             padding-top: 40px; /* Tránh đè lên menu */
@@ -38,10 +37,34 @@
         }
 
         .logo-section img {
-            height: 100%; /* Logo to lấp đầy diện tích được giao */
-            width: auto;
             object-fit: contain;
         }
+
+        /* Khung bao quanh tiêu đề nhóm lớp */
+	.header-box {
+	    width: 95%;           /* Chiếm 95% chiều rộng màn hình bất kể máy tính hay đt */
+	    max-width: 900px;     /* Nhưng không được rộng quá 900px trên máy tính */
+	    margin: 20px auto;
+	    padding: 15px;
+	    border: 2px solid black;
+	    box-sizing: border-box; /* Giúp padding không làm nở khung ra ngoài */
+	    text-align: center;
+	}
+
+	/* Tiêu đề tự co giãn font chữ */
+	h1, h2 {
+	    /* calc giúp chữ tự to ra trên máy tính và nhỏ lại trên điện thoại */
+	    font-size: calc(1.2rem + 1.5vw); 
+	    line-height: 1.4;       /* Khoảng cách dòng thoáng đãng, không bị chồng chữ */
+	    word-wrap: break-word;  /* Nếu từ quá dài, nó sẽ tự xuống dòng */
+	    margin: 10px 0;
+	}
+
+	/* Đảm bảo ảnh (nếu có) không tràn màn hình */
+	img {
+	    max-width: 100%;
+	    height: auto;
+	}
 
 	/* Phần chứa thông tin và đường dẫn */
 	.info-section {
@@ -55,8 +78,6 @@
 	}
 	/* Sửa lại phần khung chứa tên nhóm lớp */
 	.header-box {
-	    width: 90%;
-	    max-width: 800px;
 	    margin: auto;
 	    text-align: center;
 	    border: 2px solid black;
@@ -71,7 +92,6 @@
 	}
 
 	.label-text {
-	    font-size: 30px;
 	    font-weight: 500;
 	    text-transform: uppercase;
 	}
