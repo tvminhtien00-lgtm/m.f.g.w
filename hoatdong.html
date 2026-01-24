@@ -3,57 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoạt Động Nhóm - LỬA MIỄN PHÍ (Cloud)</title>
+    <title>Hoạt Động Nhóm - LỬA MIỄN PHÍ</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
         .container { max-width: 700px; margin: auto; }
+        
+        /* Menu điều hướng */
+        nav { text-align: center; margin-bottom: 10px; }
+        nav a { text-decoration: none; color: #1877f2; font-weight: bold; margin: 0 10px; }
+
+        /* Phần khai báo tên */
+        .identity-box { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        
+        /* Card ảnh */
         .photo-card { background: white; margin-bottom: 30px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .photo-card img { width: 100%; height: auto; display: block; }
+        .photo-grid { display: flex; flex-wrap: wrap; gap: 5px; }
+        .photo-grid img { width: calc(50% - 5px); height: 250px; object-fit: cover; cursor: pointer; transition: 0.2s; }
+        .photo-grid img:hover { transform: scale(1.02); }
+
+        /* Phần bình luận */
         .comment-section { padding: 15px; border-top: 1px solid #eee; }
         .comment-list { max-height: 300px; overflow-y: auto; margin-bottom: 10px; }
-        .comment-item { font-size: 14px; background: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .btn-delete { border: none; background: #ff4d4d; color: white; padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; }
+        .comment-item { font-size: 14px; background: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .btn-delete { border: none; background: #ff4d4d; color: white; padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; height: fit-content; }
+        
         .comment-input-area { display: flex; gap: 10px; }
         .comment-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none; }
         .btn-comment { background: #1877f2; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
         .loading-text { text-align: center; color: gray; font-style: italic; }
-
-	/* Thêm vào phần <style> */
-	.photo-grid img {
-	    width: 100%;
-	    height: 250px;       /* Chiều cao cố định để các ảnh bằng nhau */
-	    object-fit: cover;   /* Ảnh lấp đầy khung, chấp nhận bị cắt một chút ở rìa để không bị méo */
-	    cursor: pointer;
-	    transition: transform 0.2s;
-	}
-
-	.photo-grid img:hover {
-	    transform: scale(1.02); /* Hiệu ứng phóng to nhẹ khi di chuột vào */
-	}
-
     </style>
 </head>
 
+
 <body>
 
-    <nav style="text-align: center;"><a href="index.html">Trang Chủ</a></nav>
-    <nav style="text-align: center;"><a href="tvlop.html">Thành Viên Nhóm</a></nav>
+    <nav>
+        <a href="index.html">Trang Chủ</a> | 
+        <a href="tvlop.html">Thành Viên Nhóm</a>
+    </nav>
 
-<div class="container" style="margin-bottom: 20px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-    <label style="font-weight: bold;">Vui lòng khai báo danh tính : </label>
-    <input type="text" id="user-name-input" placeholder="(Không thể đổi)..." 
-           onchange="saveUsername(this.value)" 
-           style="padding: 8px; border-radius: 5px; border: 1px solid #ddd; width: 200px;">
-</div>
+    <div class="container identity-box">
+        <label style="font-weight: bold;">Danh tính: </label>
+        <input type="text" id="user-name-input" placeholder="Nhập tên của bạn..." 
+               onchange="saveUsername(this.value)" 
+               style="padding: 8px; border-radius: 5px; border: 1px solid #ddd; width: 200px;">
+    </div>
 
-<div class="container" id="gallery">
-    <p class="loading-text">Đang kết nối...</p>
-</div>
+    <div class="container" id="gallery">
+        <p class="loading-text">Đang kết nối dữ liệu...</p>
+    </div>
+
 
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwI66pmvlV3qp3QKIvbTHNQ74zaQhUSJICH2OVKLoCT2b8kWRjfQBH6uROC9RzHCtPahw/exec';
     
-    // Lấy tên đã lưu hoặc mặc định là "Người lạ"
+    // 1. Quản lý danh tính người dùng
     let currentUserName = localStorage.getItem('myUserName') || "Người lạ";
     document.getElementById('user-name-input').value = currentUserName === "Người lạ" ? "" : currentUserName;
 
@@ -61,68 +66,63 @@
         if(name.trim() === "") return;
         localStorage.setItem('myUserName', name);
         currentUserName = name;
-        alert("Chào " + name + "! Giờ bạn có thể bắt đầu bình luận.");
-        loadCommentsFromCloud(); // Vẽ lại giao diện để cập nhật tên
+        alert("Chào " + name + "!");
+        loadCommentsFromCloud(); 
     }  
 
-    // 1. Tạo ID người dùng duy nhất (để kiểm tra quyền xóa)
     if (!localStorage.getItem('myUserId')) {
         localStorage.setItem('myUserId', 'user_' + Math.random().toString(36).substr(2, 9));
     }
     const currentUserId = localStorage.getItem('myUserId');
 
-	const photos = [
-	    { 
-	        id: "img2", 
-	        src: ["img/HANVOIU.png","img/HANCAN5.png"], // Vẫn có thể để 1 ảnh
-	        caption: "Trùm bom keo" 
-	    },
-	    { 
-	        id: "img3", 
-	        src: ["img/QUANDOANFF.png"], 
-	        caption: "Kỷ niệm ngày thành lập" 
-	    }
+    // 2. Danh sách bài đăng (Ảnh)
+    const photos = [
+        { 
+            id: "img2", 
+            src: ["img/HANVOIU.png","img/HANCAN5.png"], 
+            caption: "Trùm bom keo" 
+        },
+        { 
+            id: "img3", 
+            src: ["img/QUANDOANFF.png"], 
+            caption: "Kỷ niệm ngày thành lập" 
+        }
+    ];
 
-	];
-
-    // 2. HÀM LẤY DỮ LIỆU TỪ GOOGLE SHEETS
+    // 3. Lấy dữ liệu từ Cloud
     async function loadCommentsFromCloud() {
         try {
-            // Gửi yêu cầu lấy dữ liệu (action=read)
             const response = await fetch(`${scriptURL}?action=read`);
             const allComments = await response.json();
             renderGallery(allComments);
         } catch (error) {
-            console.error("Chưa có dữ liệu hoặc lỗi kết nối:", error);
-            renderGallery({}); // Nếu lỗi thì hiện ảnh mà không có bình luận
+            console.error("Lỗi kết nối:", error);
+            renderGallery({}); 
         }
     }
 
-    // 3. HÀM HIỂN THỊ GIAO DIỆN
+    // 4. Hiển thị giao diện
     function renderGallery(allComments) {
         const gallery = document.getElementById('gallery');
         gallery.innerHTML = "";
 
         photos.forEach(photo => {
             const photoComments = allComments[photo.id] || [];
-
             const card = document.createElement('div');
             card.className = 'photo-card';
+            
             card.innerHTML = `
-		<div class="photo-grid" style="display: flex; flex-wrap: wrap; gap: 5px;">
-		    ${photo.src.map(imgSrc => `
-		        <img src="${imgSrc}" style="width: calc(50% - 5px); object-fit: cover; height: 200px; border-radius: 5px;">
-		    `).join('')}
-		</div>
-
+                <div class="photo-grid">
+                    ${photo.src.map(imgSrc => `<img src="${imgSrc}">`).join('')}
+                </div>
                 <div style="padding: 10px; font-weight: bold;">${photo.caption}</div>
                 <div class="comment-section">
                     <div class="comment-list">
                         ${photoComments.map((c, index) => `
                             <div class="comment-item">
-                                <span><b>Người lạ:</b> ${c.content}</span>
+                                <span><b>${c.userName || 'Người lạ'}:</b> ${c.content}</span>
                                 ${c.ownerId === currentUserId ? 
-                                    `<button class="btn-delete" onclick="deleteCommentFromCloud('${photo.id}', ${index})">Xóa</button>` : ''}
+                                    `<button class="btn-delete" onclick="deleteComment('${photo.id}', ${index})">Xóa</button>` : ''}
                             </div>
                         `).reverse().join('')}
                     </div>
@@ -136,34 +136,33 @@
         });
     }
 
-    // 4. HÀM GỬI BÌNH LUẬN LÊN CLOUD
+    // 5. Gửi bình luận
     window.addCommentToCloud = function(photoId) {
         const input = document.getElementById(`input-${photoId}`);
         const text = input.value.trim();
         if (!text) return;
 
-        input.disabled = true; // Tạm khóa để tránh nhấn nhiều lần
-        
-        fetch(`${scriptURL}?action=write&photoId=${photoId}&content=${encodeURIComponent(text)}&ownerId=${currentUserId}`)
+        input.disabled = true;
+        const finalURL = `${scriptURL}?action=write&photoId=${photoId}&content=${encodeURIComponent(text)}&ownerId=${currentUserId}&userName=${encodeURIComponent(currentUserName)}`;
+
+        fetch(finalURL)
         .then(() => {
             input.value = "";
             input.disabled = false;
-            loadCommentsFromCloud(); // Tải lại để cập nhật mới nhất
+            loadCommentsFromCloud();
+        })
+        .catch(() => {
+            alert("Lỗi mạng, thử lại nhé!");
+            input.disabled = false;
         });
-    // Thêm &userName vào link fetch
-    fetch(`${scriptURL}?action=write&photoId=${photoId}&content=${encodeURIComponent(text)}&ownerId=${currentUserId}&userName=${encodeURIComponent(currentUserName)}`)
     }
 
-    // 5. HÀM XÓA (Hiện tại Google Sheets xóa dòng hơi phức tạp, chúng ta sẽ tạm ẩn trên giao diện trước)
-    window.deleteCommentFromCloud = function(photoId, index) {
-        alert("Tính năng xóa trên Cloud đang được bảo trì. Bình luận sẽ tạm ẩn trên máy bạn.");
-        // Chỗ này sau này có thể nâng cấp thêm hàm xóa dòng trong Sheets
+    window.deleteComment = function(photoId, index) {
+        alert("Tính năng xóa đang bảo trì trên hệ thống Cloud.");
     }
 
-    // Khởi chạy
     loadCommentsFromCloud();
+    
 </script>
-
 </body>
 </html>
-      

@@ -1,0 +1,80 @@
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
+        h1 { text-align: center; color: #333; }
+
+/* Khung chứa hồ sơ - KHÓA KÍCH THƯỚC */
+        .profile-container {
+            display: flex;
+            width: 1000px; /* Độ rộng vừa phải */
+            height: 350px;     /* CHIỀU CAO CỐ ĐỊNH: Giúp mọi trang đều cao bằng nhau */
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Phần bên trái: Ảnh (30% chiều rộng) */
+        .profile-image {
+            flex: 0 0 350px; /* KHÓA ĐỘ RỘNG phần ảnh là 350px */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #fafafa; /* Màu nền nhẹ để lộ rõ khung ảnh vuông */
+            box-sizing: border-box;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Ảnh luôn nằm gọn bên trong, không bị cắt */
+            border-radius: 5px;
+        }
+
+        /* Phần bên phải: Thông tin */
+        .profile-info {
+            flex: 1; /* Tự động chiếm phần còn lại */
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-item {
+            font-size: 20px;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 5px;
+        }
+
+        .info-item strong {
+            color: #1877f2;
+            width: 130px;
+            display: inline-block;
+        }
+
+        /* Điều hướng */
+        .navigation-area {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+            border: 2px solid #333;
+            padding: 10px 25px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-btn:hover {
+            background-color: #333;
+            color: white;
+        }
+    </style>
