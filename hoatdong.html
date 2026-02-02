@@ -5,34 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoạt Động Nhóm - LỬA MIỄN PHÍ</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-        .container { max-width: 700px; margin: auto; }
-        
-        /* Menu điều hướng */
-        nav { text-align: center; margin-bottom: 10px; }
-        nav a { text-decoration: none; color: #1877f2; font-weight: bold; margin: 0 10px; }
 
-        /* Phần khai báo tên */
-        .identity-box { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        
-        /* Card ảnh */
-        .photo-card { background: white; margin-bottom: 30px; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .photo-grid { display: flex; flex-wrap: wrap; gap: 5px; }
-        .photo-grid img { width: calc(50% - 5px); height: 250px; object-fit: cover; cursor: pointer; transition: 0.2s; }
-        .photo-grid img:hover { transform: scale(1.02); }
+        body,html{
+            height:100% ;
+            width: 100%;
+            background-color: #fff;
+            display: flex; 
+            align-items: center;
+        }
 
-        /* Phần bình luận */
-        .comment-section { padding: 15px; border-top: 1px solid #eee; }
-        .comment-list { max-height: 300px; overflow-y: auto; margin-bottom: 10px; }
-        .comment-item { font-size: 14px; background: #f9f9f9; padding: 10px; border-radius: 5px; margin-bottom: 8px; display: flex; justify-content: space-between; }
-        .btn-delete { border: none; background: #ff4d4d; color: white; padding: 3px 8px; border-radius: 4px; cursor: pointer; font-size: 11px; height: fit-content; }
-        
-        .comment-input-area { display: flex; gap: 10px; }
-        .comment-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none; }
-        .btn-comment { background: #1877f2; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        
-        .loading-text { text-align: center; color: gray; font-style: italic; }
+        .imgg-area{ 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            border: 12px solid #ddd;
+            border-radius: 15px;
+            background-color: gray;
+            height:90%;
+            width: 90%;
+        }
+
+        .imgg-area img{
+            max-height: 100%;
+            max-width: 100%;
+        }
     </style>
+
+
 </head>
 
 
@@ -43,7 +42,21 @@
         <a href="tvlop.html">Thành Viên Nhóm</a>
     </nav>
 
-    <div class="container identity-box">
+    <div class="imgg-area">
+        <img src="tkb.png" alt="Mô tả ảnh ">
+    </div>
+    
+
+    
+    
+</script>
+</body>
+</html>
+
+
+
+
+<!-- <div class="container identity-box">
         <label style="font-weight: bold;">Danh tính: </label>
         <input type="text" id="user-name-input" placeholder="Nhập tên của bạn..." 
                onchange="saveUsername(this.value)" 
@@ -161,8 +174,4 @@
         alert("Tính năng xóa đang bảo trì trên hệ thống Cloud.");
     }
 
-    loadCommentsFromCloud();
-    
-</script>
-</body>
-</html>
+    loadCommentsFromCloud(); -->
